@@ -1,0 +1,11 @@
+<nav>
+  <ul>
+    <li><a href routerLink="/connexion" *ngIf="!connect.isco ">Connexion</a></li>
+    <li><a href routerLink="/connexion" *ngIf="connect.isco">Deconnexion</a></li>
+    <li><a href routerLink="/rgpd" >RGPD</a></li>
+    <li><a href routerLink="/accueil" *ngIf="connect.isco && getDroit('user')==='1'">Accueil</a> </li>
+    <li><a href routerLink="/statistique" *ngIf="connect.isco && getDroit('user')==='1'">Statistiques</a></li>
+    <!--<li><a href routerLink="/gestiondata" *ngIf="connect.isco && getDroit('user')==='2'">Gestion des donnée</a></li>-->
+    <li><a href routerLink="/modifprofil" *ngIf="connect.isco">Modifier Profil</a></li>
+  </ul>
+</nav>

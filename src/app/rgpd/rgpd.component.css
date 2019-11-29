@@ -1,0 +1,11 @@
+article{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  font-size: x-large;
+  line-height: 170%;
+}
+
+article:hover{
+  background-color: lightblue;
+}

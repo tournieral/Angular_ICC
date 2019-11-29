@@ -1,0 +1,17 @@
+img{
+  width: 30%;
+  height: 50%;
+}
+
+section{
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+a{
+  color: black;
+}
+
+
+

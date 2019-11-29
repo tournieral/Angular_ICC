@@ -1,0 +1,14 @@
+<section >
+  <form #fi="ngForm" (submit)="authentification()" *ngIf="!connectServ.isco">
+  <label>Identifiant</label>
+    <input type="text" name="id" [(ngModel)]="identification.id" placeholder="Identifiant" required #id="ngModel">
+    <span *ngIf="id.invalid">Champ obligatoire</span>
+    <br>
+    <label for="password">Mot de passe</label>
+    <input id="password" type="password" name="pwd" [(ngModel)]="identification.pwd" placeholder="Mot de passe" required minlength="3"  #pwd="ngModel">
+    <span *ngIf="pwd.invalid">Merci d'attribuer au moins 3 carractères</span>
+    <input name="envoie" type="submit" value="Envoyer" [disabled]="fi.control.invalid">
+    <input name="annuler" type="reset">
+  </form>
+   <button *ngIf="connectServ.isco" (click)="deco()">Deconnexion</button>
+</section>

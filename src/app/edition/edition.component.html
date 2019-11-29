@@ -1,0 +1,14 @@
+<section>
+  <form #fi="ngForm" (submit)="authentification()" *ngIf="numero || (numero===0)">
+    <p>Modification Personnage</p>
+    <label >Nom</label>
+    <input  type="text"   [(ngModel)]="etudServ.etudiant[numero].nom"placeholder=""   >
+    <label >Prénom</label>
+    <input  type="text"  placeholder=""  [(ngModel)]="etudServ.etudiant[numero].prenom">
+    <label >Photo de profile</label>
+    <input type="text"  name="img" placeholder="" [(ngModel)]="etudServ.etudiant[numero].img" >
+    <input name="envoie" type="submit" value="Envoyer" [disabled]="fi.control.invalid">
+    <input name="annuler" type="reset">
+  </form>
+
+</section>
