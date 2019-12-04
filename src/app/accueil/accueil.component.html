@@ -1,4 +1,4 @@
-<section xmlns="http://www.w3.org/1999/html">
+ <section xmlns="http://www.w3.org/1999/html">
   <span href [routerLink]="['/modifprofil']"  *ngFor="let e of etudServ.etudiant; let i=index" >
     <article *ngIf="e.droit==='2' && !(this.getIdSupp() === e.prenom && this.getSupp()==='true')" (click)="choixetudiant(e)">
     <img [src]=e.img alt="Photo">

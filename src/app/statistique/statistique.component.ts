@@ -11,22 +11,24 @@ export class StatistiqueComponent implements OnInit {
   chartOptions1: Highcharts.Options;
   salaire: typeof Highcharts;
   chartsOptions2: Highcharts.Options;
-  constructor(public etudServ: EtudiantService) { }
+
+  constructor(public etudServ: EtudiantService) {
+  }
 
   ngOnInit() {
 
     const optionres = [
-      {name: 'ICC', y: 0 },
-      {name: 'IA', y: 0 },
+      {name: 'ICC', y: 0},
+      {name: 'IA', y: 0},
       {name: 'IMSI', y: 0}
-  ];
-    const salaireres = [
-      {salaire : 0, lieux: 'Toulouse', nb : 0},
-      {salaire : 0, lieux: 'pau', nb : 0}
     ];
-    const tab = this.etudServ.etudiant;
-    for (let i of tab ) {
-      if (i.droit==='2') {
+    const salaireres = [
+      {salaire: 0, lieux: 'Toulouse', nb: 0},
+      {salaire: 0, lieux: 'pau', nb: 0}
+    ];
+    const tab: Array<any> = this.etudServ.etudiant;
+    for (const i of tab) {
+      if (i.droit === '2') {
         switch (i.option) {
           case 'ICC' :
             optionres[0].y += 1;
@@ -50,14 +52,15 @@ export class StatistiqueComponent implements OnInit {
         }
       }
     }
-    for (let e of optionres) {
+    for (const e of optionres) {
       e.y = (e.y / optionres.length) * 100;
     }
-    for (let s of salaireres) {
+ /*   for (let s of salaireres) {
       s.salaire = s.salaire / s.nb;
-    } ;
+    }
+   */
     console.log(optionres);
-    console.log(salaireres);
+   // console.log(salaireres);
 
     this.option = Highcharts;
     this.chartOptions1 = {
@@ -90,11 +93,13 @@ export class StatistiqueComponent implements OnInit {
         {
           type: 'column',
           name: 'Option',
-          data : optionres
-      }
+          data: optionres
+        }
       ]
-  };
-
+    };
+  }
+}
+/*
     this.salaire = Highcharts;
     this.chartsOptions2 = {
       chart: {
@@ -131,4 +136,4 @@ export class StatistiqueComponent implements OnInit {
       ]
     };
   }
-}
+}*/

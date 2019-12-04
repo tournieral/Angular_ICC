@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Route, Router} from '@angular/router';
+import {Etudiant} from '../interfaces/identification';
 
 @Component({
   selector: 'app-modif-profil',
@@ -7,11 +8,32 @@ import {Route, Router} from '@angular/router';
   styleUrls: ['./modif-profil.component.css']
 })
 export class ModifProfilComponent implements OnInit {
+  etud: Etudiant;
 
   constructor(private route: Router) { }
 
   ngOnInit() {
-  }
+    let obj = '';
+    if (this.getDroit('user') === '2') {
+      obj = 'user';
+    } else {
+      obj = 'etudiant';
+    }
+      this.etud = {
+        nom: this.getNom(obj),
+        prenom: this.getPrenom(obj),
+        option: this.getOption(obj),
+        genie: this.getGenie(obj),
+        age: this.getAge(obj),
+        annee_diplome: this.getDiplome(obj),
+        salaire: this.getSalaire(obj),
+        poste: this.getPoste(obj),
+        entreprise: this.getEntreprise(obj),
+        lieux: this.getLieux(obj),
+        img: this.getImg(obj),
+      };
+    }
+
   getNom(obj) {
     return JSON.parse(localStorage.getItem(obj)).nom;
 }
@@ -65,18 +87,19 @@ export class ModifProfilComponent implements OnInit {
       id : identifiant,
       pwd : mdp,
       droit : droits,
-      nom : document.getElementById('nom').value,
-      prenom : document.getElementById('prenom').value,
-      option : document.getElementById('option').value,
-      genie : document.getElementById('genie').value,
-      age : document.getElementById('age').value,
-      annee_diplome : document.getElementById('diplome').value,
-      salaire : document.getElementById('salaire').value,
-      poste : document.getElementById('poste').value,
-      entreprise : document.getElementById('entreprise').value,
-      lieux : document.getElementById('lieux').value,
-      img : document.getElementById('img').value
+      nom : this.etud.nom,
+      prenom : this.etud.prenom,
+      option : this.etud.option,
+      genie : this.etud.genie,
+      age : this.etud.age,
+      annee_diplome : this.etud.annee_diplome,
+      salaire : this.etud.salaire,
+      poste : this.etud.poste,
+      entreprise : this.etud.entreprise,
+      lieux : this.etud.lieux,
+      img : this.etud.img,
     }));
+    console.log(localStorage);
 
   }
   annonimiser(obj) {
@@ -89,21 +112,21 @@ export class ModifProfilComponent implements OnInit {
       droit : droits,
       nom: '*******',
       prenom: '******',
-      option : document.getElementById('option').value,
-      genie : document.getElementById('genie').value,
-      age : document.getElementById('age').value,
-      annee_diplome : document.getElementById('diplome').value,
-      salaire : document.getElementById('salaire').value,
-      poste : document.getElementById('poste').value,
-      entreprise : document.getElementById('entreprise').value,
-      lieux : document.getElementById('lieux').value,
+      option : this.etud.option,
+      genie : this.etud.genie,
+      age : this.etud.age,
+      annee_diplome : this.etud.annee_diplome,
+      salaire : this.etud.salaire,
+      poste : this.etud.poste,
+      entreprise : this.etud.entreprise,
+      lieux : this.etud.lieux,
       img : 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Anonymous.svg/433px-Anonymous.svg.png'
     }));
   }
   supprimer() {
     localStorage.setItem('supp', JSON.stringify({
       supp : 'true',
-      etudiant: this.getPrenom('etudiant')
+      etudiant:  this.getPrenom('etudiant')
     }));
     this.route.navigate(['/accueil']);
     console.log(localStorage);

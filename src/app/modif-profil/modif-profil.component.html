@@ -18,88 +18,51 @@
   </article>
 
   <article *ngIf="this.getNom('etudiant')===''&& this.getDroit('user')==='1'">
-    <h1 style="margin: center">Selectionnez un etudiant dans la page Accueil</h1>
+    <h1 style="margin: auto">Selectionnez un etudiant dans la page Accueil</h1>
   </article>
 
 
-  <article  class="formulaire box" *ngIf="this.getDroit('user')==='2'">
-  <form  (submit)="modification('user')">
-    <p style="background-color: darkred; color: white; font-size: x-large;">Si vous ne voulez pas que l'on utilise vos données merci de les supprimer</p>
+  <article  class="formulaire box" >
+  <form  (submit)="modification('user')" *ngIf="etud.nom !== ''">
+    <p style="background-color: darkred; color: white; font-size: x-large;" *ngIf="this.getDroit('user') === '2'">Si vous ne voulez pas que l'on utilise vos données merci de les supprimer</p>
     <label for="prenom">Prenom</label>
-    <input id ="prenom" type="text" value="{{this.getPrenom('user')}}" >
+    <input id ="prenom" name ="prenom" type="text"  [(ngModel)]="etud.prenom" >
     <br>
     <label for="nom">Nom</label>
-    <input id ="nom" type="text" value="{{this.getNom('user')}}">
+    <input id ="nom" name="nom" type="text"  [(ngModel)]="etud.nom" #nom="ngModel">
     <br>
     <label for="age">Age</label>
-    <input id ="age" type="text" value="{{this.getAge('user')}}">
+    <input id ="age" name="age" type="text"  [(ngModel)]="etud.age" #age="ngModel">
     <br>
     <label for="diplome">Année du diplome</label>
-    <input id ="diplome" type="text" value="{{this.getDiplome('user')}}">
+    <input id ="diplome" name="diplome" type="text"  [(ngModel)]="etud.annee_diplome" #annee_diplome="ngModel">
     <br>
     <label for="genie">Génie</label>
-    <input id ="genie" type="text" value="{{this.getGenie('user')}}">
+    <input id ="genie" name="genie" type="text" [(ngModel)]="etud.genie" #genie="ngModel">
     <br>
     <label for="option">Option</label>
-    <input id ="option" type="text" value="{{this.getOption('user')}}">
+    <input id ="option" name="option" type="text"  [(ngModel)]="etud.option" #option="ngModel">
     <br>
     <label for="poste">Poste</label>
-    <input id ="poste" type="text" value="{{this.getPoste('user')}}">
+    <input id ="poste" name="poste" type="text" [(ngModel)]="etud.poste" #poste="ngModel">
     <br>
     <label for="entreprise">Entreprise</label>
-    <input id ="entreprise" type="text" value="{{this.getEntreprise('user')}}">
+    <input id ="entreprise" name="entreprise" type="text" [(ngModel)]="etud.entreprise" #entreprise="ngModel">
     <br>
     <label for="lieux">Lieux</label>
-    <input id ="lieux" type="text" value="{{this.getLieux('user')}}">
+    <input id ="lieux" name="lieux" type="text" [(ngModel)]="etud.lieux" #ieux="ngModel">
     <br>
     <label for="salaire">Salaire</label>
-    <input id ="salaire" type="text" value="{{this.getSalaire('user')}}">
+    <input id ="salaire" name ="salaire" type="text"  [(ngModel)]="etud.salaire" #salaire="ngModel">
     <br>
     <label for="img">Photo</label>
-    <input id ="img" type="text" value="{{this.getImg('user')}}">
+    <input id ="img" name="img" type="text"  [(ngModel)]="etud.img" #img="ngModel">
     <br>
     <input name="Modifier" type="submit" value="Modifier">
     <input name="Réinitialiser" type="reset">
+    <button name="Supprimer" (click)="supprimer()" *ngIf="this.getDroit('user') === '1' " > Supprimer</button>
   </form>
   </article>
 
-  <article  class="formulaire box" *ngIf="this.getDroit('user')==='1' && this.getNom('etudiant')!==''">
-    <form  (submit)="modification('etudiant')">
-      <label for="prenom">Prenom</label>
-      <input id ="prenom" type="text" value="{{this.getPrenom('etudiant')}}">
-      <br>
-      <label for="nom">Nom</label>
-      <input id ="nom" type="text" value="{{this.getNom('etudiant')}}">
-      <br>
-      <label for="age">Age</label>
-      <input id ="age" type="text" value="{{this.getAge('etudiant')}}">
-      <br>
-      <label for="diplome">Année du diplome</label>
-      <input id ="diplome" type="text" value="{{this.getDiplome('etudiant')}}">
-      <br>
-      <label for="genie">Génie</label>
-      <input id ="genie" type="text" value="{{this.getGenie('etudiant')}}">
-      <br>
-      <label for="option">Option</label>
-      <input id ="option" type="text" value="{{this.getOption('etudiant')}}">
-      <br>
-      <label for="poste">Poste</label>
-      <input id ="poste" type="text" value="{{this.getPoste('etudiant')}}">
-      <br>
-      <label for="entreprise">Entreprise</label>
-      <input id ="entreprise" type="text" value="{{this.getEntreprise('etudiant')}}">
-      <br>
-      <label for="lieux">Lieux</label>
-      <input id ="lieux" type="text" value="{{this.getLieux('etudiant')}}">
-      <br>
-      <label for="salaire">Salaire</label>
-      <input id ="salaire" type="text" value="{{this.getSalaire('etudiant')}}">
-      <br>
-      <label for="img">Photo</label>
-      <input id ="img" type="text" value="{{this.getImg('etudiant')}}">
-      <br>
-      <input name="Modifier" type="submit" value="Modifier">
-      <button name="Supprimer" (click)="supprimer()"  > Supprimer</button>
-    </form>
-  </article>
+
 </div>

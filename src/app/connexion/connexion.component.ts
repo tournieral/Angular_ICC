@@ -26,7 +26,7 @@ export class ConnexionComponent implements OnInit {
 
   authentification() {
     localStorage.setItem('user', JSON.stringify({login : this.identification.id , pwd : this.identification.pwd}));
-    const tab = this.etudServ.etudiant;
+    const tab: Array<any> = this.etudServ.etudiant;
     for ( let index of tab) {
       if (index.id === this.getLogin() && index.pwd === this.getPwd()) {
         const droit = index.droit;
